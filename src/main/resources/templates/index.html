@@ -1,12 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Music Archive</title>
-</head>
-<body>
 
-<h1>Music Archive, welcome</h1>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body class="bg-gray-800">
+<!-- -->
+<div class="text-center mx-auto w-6/12">
+    <h1 class="text-6xl font-extrabold text-white">Cam's Music Archive</h1>
+    <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbGRxemVwa2N2Y2JqZG51bzZxaHVpOW13eG1vdms0YXl2cHA1a2F5ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/kf4OX2DTjYAYH9gxX7/giphy.gif" class="mx-auto block"/>
+  <div>
+    <form method="POST" enctype="multipart/form-data" action="/">
+      <label class="mx-2 text-white">File to Upload: </label>
+      <input name="file" class="bg-black ring-1 ring-gray-800 text-white font-medium p-1 rounded-xl" type="file" />
+      <button class="bg-black ring-1 ring-gray-800 text-white font-medium p-1 my-2 text-2xl rounded-xl hover:bg-white hover:text-black" type="submit">Upload File</button>
+    </form>
+  </div>
+
+</div>
+
+
+<div class="overflow-x-auto rounded-lg border border-gray-200">
+    <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+      <thead class="ltr:text-left rtl:text-right">
+        <tr>
+          <th class="whitespace-normal px-4 py-2 font-medium text-gray-900">Song Name</th>
+          <th class="whitespace-normal px-4 py-2 font-medium text-gray-900">Audio</th>
+        </tr>
+      </thead>
+  
+      <tbody class="divide-y divide-gray-200">
+
+        <tr th:each="fileName: ${songFileNames}">
+          <td th:text="${fileName}" class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-center">LALA - Myke Towers</td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700 text-center">
+            <audio controls style="display: block; margin: auto;">
+                <source th:src="${'https://musicarchivecam.nyc3.digitaloceanspaces.com/' + fileName}" type="audio/mpeg">
+                Your browser does not support the audio element
+            </audio>
+          </td>
+        </tr>
+  
+        <!-- <tr>
+          <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Jane Doe</td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700">04/11/1980</td>
+        </tr>
+  
+        <tr>
+          <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Gary Barlow</td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700">24/05/1995</td>
+        </tr> -->
+
+      </tbody>
+    </table>
+  </div>
 
 </body>
 </html>
